@@ -1,0 +1,19 @@
+{{#each data}}
+<h1>{{cityProvince}}</h1>
+<div class="container-fluid">
+    <div class="row">
+    {{#each rentals}}
+    {{>rental}}
+    {{/each}}
+    </div>
+</div>
+{{else}}
+No Data
+{{/each}}
+
+<style>
+    h1 {
+        text-align: center;
+        padding: 20px 0;
+    }
+</style>

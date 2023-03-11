@@ -1,0 +1,53 @@
+<head>
+    <title>blog</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+     .hero-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1554310603-d39d43033735?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+    height: 200%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+     color: rgb(255, 255, 255);
+  }
+  </style>
+</head>
+
+
+<section class="hero">
+     <div class="hero-image"img>
+        <div class="hero-text">
+          <h1 style="font-size:70px">Welcome to WEB322 Assignment</h1>
+
+        </div>
+      </div>
+</section>
+
+
+<section class="Featured-rentals">
+    <div class="section-heading">
+        <h1 class="title">Featured Rentals</h1>
+    </div>
+    <div class="container-fluid grid">
+        <div class="row">
+            {{#each data}}
+            {{>rental}}
+            {{else}}
+            No Data
+            {{/each}}
+        </div>
+    </div>
+    </div>
+    <style>
+        .section-heading {
+            padding-bottom: 30px;
+        }
+        .grid {
+            padding-bottom: 10px;
+        }
+    </style>
+</section>

@@ -1,0 +1,36 @@
+<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="card">
+        <img class="card-img-top rounded img-fluid" src={{imageUrl}} alt="{{imageUrl}}">
+        <div class="card-body">
+            <div class="card-heading"><strong>{{headline}}</strong></div>
+            <div class="row">
+                <div class="col-sm-12 col-lg-7">
+                    Sleeps {{numSleeps}} | {{numBedrooms}} BR | {{numBathrooms}} BA
+                </div>
+                <div class=" col-sm-12 col-lg-5">
+                    <strong>C${{pricePerNight}}</strong> avg/night
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .card {
+            margin-bottom: 40px;
+        }
+
+        .col-sm-12 {
+            font-size: small;
+            color: rgb(105, 105, 105);
+        }
+
+        .card img {
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</div>
