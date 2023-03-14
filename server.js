@@ -55,6 +55,12 @@ app.get("/log-in",(req,res)=>{
     res.render('log-in');
 })
 
+
+app.get('/welcome', (req, res) => {
+    const headers = req.welcome;
+    res.render('welcome');
+  });
+
 // *** DO NOT MODIFY THE LINES BELOW ***
 
 // This use() will not allow requests to go beyond it

@@ -2,7 +2,7 @@
     <div class="row align-items-center" style="height: 100vh;">
         <div class="mx-auto col-10 col-md-8 col-lg-6">
             <form class="form-example" action="">
-               <center> <h1>Welcome Back</h1></center>
+                <center> <h1>Welcome Back</h1></center>
                 <div class="form-group">
                     <input type="text" class="form-control username" id="username" placeholder="Email Address"
                         name="username" />
@@ -12,6 +12,10 @@
                         name="password" />
                 </div>
 
+                <div class="alert alert-danger d-none" id="error-msg">
+                    You should enter something
+                </div>
+
                 <button type="submit" class="btn btn-primary btn-customized mt-4">
                     Login
                 </button>
@@ -19,8 +23,6 @@
         </div>
     </div>
 </div>
-
-
 
 <style>
     .mx-auto {
@@ -38,3 +40,31 @@
         padding-bottom: 15px;
     }
 </style>
+
+<script>
+    const form = document.querySelector('.form-example');
+    const username = document.querySelector('.username');
+    const password = document.querySelector('.password');
+    const errorMsg = document.querySelector('#error-msg');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!username.value.trim() || !password.value.trim()) {
+            errorMsg.classList.remove('d-none');
+        } else {
+            // Perform login
+        }
+    });
+
+    username.addEventListener('input', () => {
+        if (username.value.trim()) {
+            errorMsg.classList.add('d-none');
+        }
+    });
+
+    password.addEventListener('input', () => {
+        if (password.value.trim()) {
+            errorMsg.classList.add('d-none');
+        }
+    });
+</script>
