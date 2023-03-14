@@ -1,33 +1,35 @@
 <div>
     <div class="row align-items-center" style="height: 100vh;">
         <div class="mx-auto col-10 col-md-8 col-lg-6">
-            <form class="form-example" action="">
+            <form class="form-example" id="signup-form">
                 <h1>Sign Up</h1>
                 <p>Create your account by entering your email address and choosing a password</p>
                 <div class="form-group">
                     <input type="text" class="form-control first-name" id="first-name" placeholder="First Name"
-                        name="username" />
+                        name="first-name" required />
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control last-name" id="last-name" placeholder="Last Name"
-                        name="username" />
+                        name="last-name" required />
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control username" id="username" placeholder="Email Address"
-                        name="username" />
+                        name="username" required />
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control password" id="password" placeholder="Password"
-                        name="password" />
+                        name="password" required />
                 </div>
+                <p id="error-message" style="display: none; color: red;">You should enter all sections!</p>
 
                 <button type="submit" class="btn btn-primary btn-customized mt-4">
-                    Login
+                    Register
                 </button>
             </form>       
         </div>
     </div>
 </div>
+
 
 
 <style>
@@ -58,3 +60,24 @@
         text-align: center;
     }
 </style>
+<script>
+    const signupForm = document.getElementById('signup-form');
+
+    signupForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const firstName = document.getElementById('first-name').value;
+        const lastName = document.getElementById('last-name').value;
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (firstName === '' || lastName === '' || username === '' || password === '') {
+            document.getElementById('error-message').style.display = 'block';
+        } else {
+            window.location.href = '/welcome';
+        }
+    });
+</script>
+
+
+
