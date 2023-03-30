@@ -74,10 +74,17 @@
         if (firstName === '' || lastName === '' || username === '' || password === '') {
             document.getElementById('error-message').style.display = 'block';
         } else {
+            const message = `Dear ${firstName} ${lastName},\n\nWelcome to our website! We are excited to have you on board. Thank you for registering on our website.\n\nBest,\n[Your Name]\n[Website Name]`;
+            const subject = 'Welcome to our website!';
+            const email = username; 
+            sendEmail(email, subject, message);
             window.location.href = '/welcome';
         }
     });
-</script>
 
+    function sendEmail(email, subject, message) {
+        console.log(`Email sent to ${email} with subject "${subject}" and message:\n\n${message}`);
+    }
+</script>
 
 
