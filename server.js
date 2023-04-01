@@ -14,13 +14,15 @@ const path = require("path");
 const express = require("express");
 const exphbs = require('express-handlebars');
 const { dirname } = require("path");
-const mongoose = require("mongoose");
+const dotenv = require('dotenv');
 const app = express();
 const rentals = require("./models/rentals-db.js")
+const mongoose = require("mongoose");
+// Require controllers
+const generalController = require('./controller/generalController');
+const rentalsController = require('./controller/rentalsController');
 
-const registration = mongoose.createConnection("mongodb+srv://seung:Eurekarenton92@atlascluster.zeem57y.mongodb.net/web322_week8?retryWrites=true&w=majority");
-const blog = mongoose.createConnection        ("mongodb+srv://seung:Eurekarenton92@atlascluster.zeem57y.mongodb.net/web322_week8?retryWrites=true&w=majority");
-
+const signup = mongoose.createConnection("mongodb+srv://seung:Eurekarenton92@atlascluster.zeem57y.mongodb.net/web322_week8?retryWrites=true&w=majority");
 
 const signup_schema = new mongoose.Schema({
     "firstname": String,
@@ -29,17 +31,6 @@ const signup_schema = new mongoose.Schema({
     "password": String,
     "email": { "type": String, "unique": true }
 });
-
-const blog_schema = new mongoose.Schema({
-    "title": String,
-    "date": String,
-    "content": String,
-    "image" : String
-});
-
-const user_info = registration.model("registration", registration_schema);
-const blog_content = blog.model("blog", blog_schema);
-
 
 app.engine('.hbs', exphbs.engine({ 
     extname: ".hbs",
@@ -88,13 +79,10 @@ app.get('/welcome', (req, res) => {
   });
 
 
-// Require controllers
-const GeneralController = require('./controllers/GeneralController');
-const RentalsController = require('./controllers/RentalsController');
 
 // // Set base URLs for controllers
-app.use('/', GeneralController);
-app.use('/rentals', RentalsController);
+app.use('/', generalController);
+app.use('/rentals', rentalsController);
 
 
 // *** DO NOT MODIFY THE LINES BELOW ***
