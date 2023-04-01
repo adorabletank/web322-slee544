@@ -81,7 +81,7 @@ app.get('/welcome', (req, res) => {
 
 
 // // Set base URLs for controllers
-app.use('/', generalController);
+app.use('/', generalController());
 app.use('/rentals', rentalsController);
 
 
