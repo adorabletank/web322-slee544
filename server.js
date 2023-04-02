@@ -19,6 +19,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const rentals = require("./models/rentals-db.js")
 const mongoose = require("mongoose");
+const bcrypt = require('bcryptjs');
 // Require controllers
 const generalController = require('./controller/generalController');
 const rentalsController = require('./controller/rentalsController');
@@ -32,6 +33,22 @@ const signup_schema = new mongoose.Schema({
     "password": String,
     "email": { "type": String, "unique": true }
 });
+
+signup_schema.pre('save', function(next) {
+    let user = this;
+    if (!user.isModified('password')) return next();
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+        if (err) return next(err);
+        bcrypt.hash(user.password, salt, function(err, hash) {
+            if (err) return next(err);
+            user.password = hash;
+            next();
+        });
+    });
+});
+
+const userModel = signup.model("users", signup_schema);
+
 
 app.engine('.hbs', exphbs.engine({ 
     extname: ".hbs",
@@ -69,10 +86,23 @@ app.get("/rentals",(req,res)=>{
     });
 })
 
-app.get("/sign-up",(req,res)=>{
-    const headers = req.signup;
-    res.render('sign-up');
-})
+app.post("/sign-up", async (req, res) => {
+    try {
+        const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
+        const user = new userModel({
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            password: hashedPassword,
+            email: req.body.email
+        });
+        const savedUser = await user.save();
+        res.render('welcome', {
+            user: savedUser
+        });
+    } catch {
+        res.status(500).send("Error occurred while registering");
+    }
+});
 
 
 app.get("/log-in",(req,res)=>{
