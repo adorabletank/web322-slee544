@@ -16,6 +16,7 @@ const exphbs = require('express-handlebars');
 const { dirname } = require("path");
 const dotenv = require('dotenv');
 const app = express();
+const bodyParser = require('body-parser');
 const rentals = require("./models/rentals-db.js")
 const mongoose = require("mongoose");
 // Require controllers
@@ -37,6 +38,13 @@ app.engine('.hbs', exphbs.engine({
     defaultLayout: "main" 
 }));
 app.set('view engine', '.hbs');
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
+
 
 
 
@@ -81,7 +89,7 @@ app.get('/welcome', (req, res) => {
 
 
 // // Set base URLs for controllers
-app.use('/', generalController());
+app.use('/', generalController);
 app.use('/rentals', rentalsController);
 
 
