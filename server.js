@@ -19,17 +19,19 @@ const app = express();
 const bodyParser = require('body-parser');
 const rentals = require("./models/rentals-db.js")
 const mongoose = require("mongoose");
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey('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');
+
 const bcrypt = require('bcryptjs');
 // Require controllers
 const generalController = require('./controller/generalController');
 const rentalsController = require('./controller/rentalsController');
-
+const saltRounds = 10;
 const signup = mongoose.createConnection("mongodb+srv://seung:Eurekarenton92@atlascluster.zeem57y.mongodb.net/web322_week8?retryWrites=true&w=majority");
 
 const signup_schema = new mongoose.Schema({
     "firstname": String,
     "lastname": String,
-    "username": { "type": String, "unique": true },
     "password": String,
     "email": { "type": String, "unique": true }
 });
@@ -47,7 +49,7 @@ signup_schema.pre('save', function(next) {
     });
 });
 
-const userModel = signup.model("users", signup_schema);
+const userModel = signup.model("sign-up", signup_schema);
 
 
 app.engine('.hbs', exphbs.engine({ 
@@ -86,23 +88,39 @@ app.get("/rentals",(req,res)=>{
     });
 })
 
-app.post("/sign-up", async (req, res) => {
-    try {
-        const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
-        const user = new userModel({
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            password: hashedPassword,
-            email: req.body.email
-        });
-        const savedUser = await user.save();
-        res.render('welcome', {
-            user: savedUser
-        });
-    } catch {
-        res.status(500).send("Error occurred while registering");
+app.post('/signup', (req, res) => {
+    const { firstName, lastName, email, password } = req.body;
+  
+    // Check for nulls (or empty values)
+    if (!firstName || !lastName || !email || !password) {
+      res.render('sign-up', { errorMessage: 'All fields are required.' });
+      return;
     }
-});
+  
+    // Validate email and password using regex patterns
+    const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,12}$/;
+    if (!emailPattern.test(email)) {
+      res.render('sign-up', { errorMessage: 'Please enter a valid email address.' });
+      return;
+    }
+    if (!passwordPattern.test(password)) {
+      res.render('sign-up', { errorMessage: 'Please enter a password between 8 and 12 characters that contains at least one lowercase letter, one uppercase letter, one number, and one symbol.' });
+      return;
+    }
+  
+    // Send welcome email using SendGrid API
+    const msg = {
+      to: email,
+      from: 'yourname@yourwebsite.com',
+      subject: 'Welcome to Your Website',
+      text: `Hi ${firstName} ${lastName},\n\nWelcome to Your Website! We're thrilled to have you as a member.\n\nBest,\nYour Name and Your Website`,
+    };
+    sgMail.send(msg);
+  
+    // Redirect to welcome page
+    res.redirect('/welcome');
+  });
 
 
 app.get("/log-in",(req,res)=>{
