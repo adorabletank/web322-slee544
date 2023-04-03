@@ -1,70 +1,90 @@
-<div>
-    <div class="row align-items-center" style="height: 100vh;">
-        <div class="mx-auto col-10 col-md-8 col-lg-6">
-            <form class="form-example" action="">
-                <center> <h1>Welcome Back</h1></center>
-                <div class="form-group">
-                    <input type="text" class="form-control username" id="username" placeholder="Email Address"
-                        name="username" />
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control password" id="password" placeholder="Password"
-                        name="password" />
-                </div>
-
-                <div class="alert alert-danger d-none" id="error-msg">
-                    You should enter something
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-customized mt-4">
-                    Login
-                </button>
-            </form>
+<div class="container-fluid py-5" style="background-color: #f5f5f5;">
+  <div class="row justify-content-center">
+    <div class="col-10 col-md-8 col-lg-6 px-5 py-4 bg-white shadow rounded">
+      <h1 class="text-center mb-4" style="color: #2c3e50;">Welcome Back</h1>
+      <form class="form-example">
+        <div class="form-group">
+          <input type="text" class="form-control username" id="username" placeholder="Email Address" name="username" />
         </div>
+        <div class="form-group">
+          <input type="password" class="form-control password" id="password" placeholder="Password" name="password" />
+        </div>
+        <div class="alert alert-danger d-none" id="error-msg">Please enter both username and password</div>
+        <button type="submit" class="btn btn-primary btn-block btn-customized mt-4">Login</button>
+      </form>
     </div>
+  </div>
 </div>
 
 <style>
-    .mx-auto {
-        border-style: solid;
-        padding: 10px;
-        margin: 0px 10px;
-        color: rgb(70, 169, 173);
-    }
+  body {
+    background-color: #e9ecef;
+  }
 
-    input.form-control {
-        margin-bottom: 20px;
-    }
+  .form-example {
+    font-size: 1.2rem;
+    color: #2c3e50;
+  }
 
-    h1 {
-        padding-bottom: 15px;
-    }
+  input.form-control {
+    border-radius: 0;
+    border: none;
+    border-bottom: 2px solid #95a5a6;
+    box-shadow: none;
+    font-size: 1.2rem;
+    padding: 10px 0;
+    margin-bottom: 25px;
+  }
+
+  input.form-control:focus {
+    border-color: #2c3e50;
+    box-shadow: none;
+  }
+
+  .btn-customized {
+    border-radius: 0;
+    font-size: 1.2rem;
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+  }
+
+  .btn-customized:hover {
+    background-color: #34495e;
+    border-color: #34495e;
+  }
+
+  #error-msg {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #c0392b;
+  }
 </style>
 
 <script>
-    const form = document.querySelector('.form-example');
-    const username = document.querySelector('.username');
-    const password = document.querySelector('.password');
-    const errorMsg = document.querySelector('#error-msg');
+  const form = document.querySelector('.form-example');
+  const username = document.querySelector('.username');
+  const password = document.querySelector('.password');
+  const errorMsg = document.querySelector('#error-msg');
 
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        if (!username.value.trim() || !password.value.trim()) {
-            errorMsg.classList.remove('d-none');
-        } else {
-            // Perform login
-        }
-    });
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!username.value.trim() || !password.value.trim()) {
+      errorMsg.classList.remove('d-none');
+    } else {
+      // Perform login
+    }
+  });
 
-    username.addEventListener('input', () => {
-        if (username.value.trim()) {
-            errorMsg.classList.add('d-none');
-        }
-    });
+  username.addEventListener('input', () => {
+    if (username.value.trim()) {
+      errorMsg.classList.add('d-none');
+    }
+  });
 
-    password.addEventListener('input', () => {
-        if (password.value.trim()) {
-            errorMsg.classList.add('d-none');
-        }
-    });
+  password.addEventListener('input', () => {
+    if (password.value.trim()) {
+      errorMsg.classList.add('d-none');
+    }
+  });
 </script>

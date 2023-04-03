@@ -20,7 +20,7 @@ const bodyParser = require('body-parser');
 const rentals = require("./models/rentals-db.js")
 const mongoose = require("mongoose");
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey('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');
+sgMail.setApiKey('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');
 
 const bcrypt = require('bcryptjs');
 // Require controllers
@@ -89,42 +89,26 @@ app.get("/rentals",(req,res)=>{
 })
 
 app.post("/sign-up", (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
-
-    if (!firstName || !lastName || !email || !password) {
-        res.render('sign-up', { errorMessage: 'All fields are required.', css: 'red' });
-        return;
-    }
-  
-    // Validate email and password using regex patterns
-    const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,12}$/;
-    if (!emailPattern.test(email)) {
-        res.render('sign-up', { errorMessage: 'Please enter a valid email address.', css: 'red' });
-        return;
-    }
-    if (!passwordPattern.test(password)) {
-        res.render('sign-up', { errorMessage: 'Please enter a password between 8 and 12 characters that contains at least one lowercase letter, one uppercase letter, one number, and one symbol.', css: 'red' });
-        return;
-    }
-
+    const { firstName, lastName, username, password } = req.body;
+    // Send welcome email using SendGrid
     const msg = {
-        to: email,
-        from: 'slee544@myseneca.ca',
-        subject: 'Welcome to Your Website',
-        text: `Hi ${firstName} ${lastName},\n\nWelcome to Your Website! We're thrilled to have you as a member.\n\nBest,\nYour Name and Your Website`,
+      to: username,
+      from: 'slee544@myseneca.ca',
+      subject: 'Welcome to Your Website',
+      text: `Hi ${firstName} ${lastName},\n\nWelcome to Your Website! We're thrilled to have you as a member.\n\nBest,\nYour Name and Your Website`,
     };
-
+    
     sgMail.send(msg, function(err, info) {
-        if (err) {
-            console.log('Error sending email: ', err);
-            res.render('sign-up', { errorMessage: 'There was an error sending the welcome email.', css: 'red' });
-        } else {
-            console.log('Email sent: ', info);
-            res.redirect('/welcome');
-        }
+      if (err) {
+        console.log('Error sending email: ', err);
+        res.render('sign-up', { errorMessage: 'There was an error sending the welcome email.', css: 'red' });
+      } else {
+        console.log('Email sent: ', info);
+        res.redirect('/welcome');
+      }
     });
-});
+    res.render('sign-up', { successMessage: 'Thank you for signing up!', css: 'green' });
+  });
 
 
 app.get("/log-in",(req,res)=>{

@@ -1,59 +1,76 @@
-<footer class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <p>
-               By submitting this assignment I declare that this assignment is my own work in accordance with<br>
-            the Seneca Academic Policy. No part of this assignment has been copied manually or<br>
-            electronically from any other source (including web sites) or distributed to other students.<br>
-            © Seungmoon Lee, slee544@myseneca.ca, WEB322 Winter 2023
-            </p>
-        </div>
+<footer class="container-fluid bg-dark text-white py-5">
+  <div class="row">
+    <div class="col-md-6">
+      <h4>About Us</h4>
+      <p>We are a rental company that provides high-quality rental services to customers across the country. Our goal is to make renting easy and hassle-free.</p>
     </div>
-
-    <div class="row align-items-end">
-        <div class="col-sm">
-            <div class="link-items-heading">Links</div>
-            <a href="/">
-                <div class="link">Home</div>
-            </a>
-            <a href="/rentals">
-                <div class="link">Rental</div>
-            </a>
-            <a href="/sign-up">
-                <div class="link">Sign Up</div>
-            </a>
-            <a href="/log-in">
-                <div class="link">Log In</div>
-            </a>
-        </div>
-        <div class="col-sm">
-            <div class="row links-row">
-                <div class="col-3"><a href="https://www.facebook.com/">
-                    <div class="social-link"><img src="/image/facebook.png" alt="facebook"></div>
-                </a></div>
-                <div class="col-3"><a href="https://www.linkedin.com/">
-                    <div class="social-link"><img src="/image/linkedin.png" alt="linkedin"></div>
-                </a></div>
-                <div class="col-3"><a href="https://twitter.com/">
-                    <div class="social-link"><img src="/image/twitter.png" alt="twitter"></div>
-                </a></div>
-                <div class="col-3"><a href="https://www.youtube.com/">
-                    <div class="social-link"><img src="/image/youtube.png" alt="youtube"></div>
-                </a></div>
-            </div>
-        </div>
+    <div class="col-md-3">
+      <h4>Links</h4>
+      <ul class="list-unstyled">
+        <li><a href="/">Home</a></li>
+        <li><a href="/rentals">Rentals</a></li>
+        <li><a href="/sign-up">Sign Up</a></li>
+        <li><a href="/log-in">Log In</a></li>
+      </ul>
     </div>
-
-    <style>
-        footer.container-fluid {
-            padding: 70px 40px;
-        }
-
-        @media only screen and (max-width: 300px) {
-            .links-row div {
-                justify-items: center;
-                padding: 10px 0;
-            }
-        }
-    </style>
+    <div class="col-md-3">
+      <h4>Connect with Us</h4>
+      <ul class="list-unstyled">
+        <li><a href="https://www.facebook.com/"><i class="fab fa-facebook fa-lg"></i> Facebook</a></li>
+        <li><a href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg"></i> LinkedIn</a></li>
+        <li><a href="https://twitter.com/"><i class="fab fa-twitter fa-lg"></i> Twitter</a></li>
+        <li><a href="https://www.youtube.com/"><i class="fab fa-youtube fa-lg"></i> YouTube</a></li>
+      </ul>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="text-center">By submitting this assignment I declare that this assignment is my own work in accordance with the Seneca Academic Policy. No part of this assignment has been copied manually or electronically from any other source (including web sites) or distributed to other students. © Seungmoon Lee, slee544@myseneca.ca, WEB322 Winter 2023</p>
+    </div>
+  </div>
+  <style>
+    footer.container-fluid {
+        background-color: #333333;
+    }
+    
+    footer h4 {
+      color: #ffffff;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    
+    footer ul {
+      margin-left: 0;
+      padding-left: 0;
+      list-style: none;
+      line-height: 1.5;
+    }
+    
+    footer ul li a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+    
+    footer ul li a:hover {
+      color: #dcdcdc;
+      text-decoration: none;
+    }
+    
+    footer i {
+      margin-right: 10px;
+    }
+    
+    footer hr {
+      border-top: 1px solid #444444;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    
+    footer p {
+      font-size: 0.8rem;
+      color: #ffffff;
+      margin-bottom: 0;
+    }
+  </style>
 </footer>

@@ -1,23 +1,42 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/"><img src="/image/header_img.JPG" alt="header-image" style="width: 60px; mix-blend-mode:multiply; margin-left:10px">       sanime</a>
+    <a class="navbar-brand" href="/">
+        <img src="/image/header_img.JPG" alt="header-image" style="width: 60px; mix-blend-mode: multiply; margin-left: 10px;"> 
+        <span style="color: #222; font-size: 24px; font-weight: bold;">Sanime</span>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" style="margin-right: 20px;">
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup" style="margin-right: 20px;">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="/">Home</a>
-            <a class="nav-item nav-link" href="/rentals">Rentals</a>
-            <a class="nav-item nav-link" href="/sign-up">Sign Up</a>
-            <a class="nav-item nav-link" href="/log-in">Login</a>
+            <a class="nav-item nav-link" href="/" style="color: #222; font-weight: bold;">Home</a>
+            <a class="nav-item nav-link" href="/rentals" style="color: #222; font-weight: bold;">Rentals</a>
+            <a class="nav-item nav-link" href="/sign-up" style="color: #222; font-weight: bold;">Sign Up</a>
+            <a class="nav-item nav-link" href="/log-in" style="color: #222; font-weight: bold;">Log In</a>
         </div>
     </div>
 </nav>
 
 <style>
     .navbar-nav a {
-        font-size: larger;
+        font-size: 18px;
         margin-left: 30px;
-        color: black;
+        color: #555;
+        text-transform: uppercase;
+        transition: all 0.2s ease-in-out;
+    }
+    .navbar-nav a:hover {
+        color: #222;
+    }
+    .navbar-toggler-icon {
+        background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath stroke="rgba(0,0,0,.5)" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E');
+    }
+    .navbar-toggler {
+        border-color: transparent;
+    }
+    .navbar-brand img {
+        border-radius: 50%;
+        border: 2px solid #555;
+        padding: 2px;
     }
 </style>
