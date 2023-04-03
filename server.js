@@ -8,7 +8,7 @@
 * Student ID    : 164830218
 * Course/Section: WEB322 NCC
 
-*//cyclic URL: https://defiant-crab-shorts.cyclic.app/
+//cyclic URL: https://defiant-crab-shorts.cyclic.app/
  //github URL: https://github.com/adorabletank/web322-slee544
 **************************************************************************************/
 
