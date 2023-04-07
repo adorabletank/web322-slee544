@@ -21,36 +21,44 @@ const rentals = require("./models/rentals-db.js")
 const mongoose = require("mongoose");
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey('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');
+app.use(bodyParser.urlencoded({extended: true}));
 
 const bcrypt = require('bcryptjs');
 // Require controllers
-const generalController = require('./controller/generalController');
-const rentalsController = require('./controller/rentalsController');
-const saltRounds = 10;
-const signup = mongoose.createConnection("mongodb+srv://seung:Eurekarenton92@atlascluster.zeem57y.mongodb.net/web322_week8?retryWrites=true&w=majority");
+// const generalController = require('./controller/generalController');
+// const rentalsController = require('./controller/rentalsController');
+// const saltRounds = 10;
+// mongoose.createConnection("mongodb+srv://seung:Eurekarenton92@atlascluster.zeem57y.mongodb.net/web322_week8", { useNewUrlParser: true }, { useUnifiedTopology: true });
 
-const signup_schema = new mongoose.Schema({
-    "firstname": String,
-    "lastname": String,
-    "password": String,
-    "email": { "type": String, "unique": true }
+const doc_Schema = new mongoose.Schema({
+    title: String,
+    content: String
+    
+    // "firstName": String,
+    // "lastName": String,
+    // "pass": String,
+    // "email": { "type": String, "unique": true }
 });
 
-signup_schema.pre('save', function(next) {
-    let user = this;
-    if (!user.isModified('password')) return next();
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-        if (err) return next(err);
-        bcrypt.hash(user.password, salt, function(err, hash) {
-            if (err) return next(err);
-            user.password = hash;
-            next();
-        });
-    });
-});
+mongoose.connect("mongodb+srv://seung:Eurekarenton92@atlascluster.zeem57y.mongodb.net/web322_week8", { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.log("Error connecting to MongoDB: " + err));
 
-const userModel = signup.model("sign-up", signup_schema);
+// signup_schema.pre('save', function(next) {
+//     let user = this;
+//     if (!user.isModified('password')) return next();
+//     bcrypt.genSalt(saltRounds, function(err, salt) {
+//         if (err) return next(err);
+//         bcrypt.hash(user.password, salt, function(err, hash) {
+//             if (err) return next(err);
+//             user.password = hash;
+//             next();
+//         });
+//     });
+// });
 
+// const signup = mongoose.model("signup", signup_Schema );
+const signup = mongoose.model("doc", doc_Schema );
 
 app.engine('.hbs', exphbs.engine({ 
     extname: ".hbs",
@@ -88,27 +96,23 @@ app.get("/rentals",(req,res)=>{
     });
 })
 
-app.post("/sign-up", (req, res) => {
-    const { firstName, lastName, username, password } = req.body;
-    // Send welcome email using SendGrid
-    const msg = {
-      to: username,
-      from: 'slee544@myseneca.ca',
-      subject: 'Welcome to Your Website',
-      text: `Hi ${firstName} ${lastName},\n\nWelcome to Your Website! We're thrilled to have you as a member.\n\nBest,\nYour Name and Your Website`,
-    };
-    
-    sgMail.send(msg, function(err, info) {
-      if (err) {
-        console.log('Error sending email: ', err);
-        res.render('sign-up', { errorMessage: 'There was an error sending the welcome email.', css: 'red' });
-      } else {
-        console.log('Email sent: ', info);
+app.get("/sign-up",(req,res)=>{
+    res.render('sign-up');
+})
+
+app.post("/sign-up", function(req, res){
+    const { title, content } = req.body;
+    const newSignup = new signup({ title, content });
+    newSignup.save()
+      .then(() => {
         res.redirect('/welcome');
-      }
-    });
-    res.render('sign-up', { successMessage: 'Thank you for signing up!', css: 'green' });
+      })
+      .catch((err) => {
+        console.log("Error saving signup to database: " + err);
+        res.status(500).send("Error saving signup to database.");
+      });
   });
+
 
 
 app.get("/log-in",(req,res)=>{
@@ -160,3 +164,5 @@ function onHttpStart() {
 // Listen on port 8080. The default port for http is 80, https is 443. We use 8080 here
 // because sometimes port 80 is in use by other applications on the machine
 app.listen(HTTP_PORT, onHttpStart);
+
+

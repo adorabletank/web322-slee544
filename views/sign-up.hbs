@@ -1,94 +1,25 @@
-<div>
-    <div class="row align-items-center" style="height: 100vh;">
-        <div class="mx-auto col-10 col-md-8 col-lg-6">
-            <form class="form-example" id="signup-form" method="POST" action="/sign-up">
-                <h1>Sign Up</h1>
-                <p>Create your account by entering your email address and choosing a password</p>
-                <div class="form-group">
-                    <input type="text" class="form-control first-name" id="first_name" placeholder="First Name"
-                        name="first-name" required />
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control last-name" id="last_name" placeholder="Last Name"
-                        name="last-name" required />
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-control username" id="username" placeholder="Email Address"
-                        name="username" required />
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control password" id="password" placeholder="Password"
-                        name="password" required />
-                </div>
-                <div class="form-group">
-                    <label for="role">Select your role:</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="role" id="data-entry-clerk" value="data-entry-clerk" checked>
-                        <label class="form-check-label" for="data-entry-clerk">
-                            Data Entry Clerk
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="role" id="customer" value="customer">
-                        <label class="form-check-label" for="customer">
-                            Customer
-                        </label>
-                    </div>
-                </div>
-                <p id="error-message" style="display: none; color: red;">You should enter all sections!</p>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet">
 
+    </head>
 
-
-            <button type="submit" class="btn btn-primary btn-customized mt-4">
-                Register
-            </button>
-        </form>       
-    </div>
-</div>
-
-</div>
-<style>
-    .mx-auto {
-        border-style: solid;
-        padding: 10px;
-        margin: 0px 10px;
-        color: rgb(70, 144, 173);
-    }
-    input.form-control {
-        margin-bottom: 20px;
-    }
-    h1 {
-        padding-bottom: 15px;
-        margin: auto;
-        align-self: center;
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    form p {
-        text-align: center;
-    }
-</style>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-    const form = document.getElementById("signup-form");
-    const error = document.getElementById("error-message");
-
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const firstName = document.getElementById("first_name").value;
-        const lastName = document.getElementById("last_name").value;
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-        const role = document.querySelector('input[name="role"]:checked').value;
-        if (firstName === '' || lastName === '' || username === '' || password === '') {
-            document.getElementById('error-message').style.display = 'block';
-        } else {
-            window.location.href = '/welcome';
-        }
-    });
-</script>
+    <body>
+        <h1>Posting data</h1>
+        <form class="container" method="post" action"/">
+        <div class="form-group">
+           <input class="form-control" name="title">
+        </div>
+        <div class="form-group">
+            <textarea class="force-control" name="content"></textarea>
+        </div>
+        
+        <button>ADD TO MONGO</button>
+        </form>
+    </body>
+</html>
 
