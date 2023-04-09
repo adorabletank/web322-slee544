@@ -3,20 +3,20 @@ const mongoose = require('mongoose');
 
 // Define user schema
 const userSchema = new mongoose.Schema({
-  firstName: {
+  fn: {
     type: String,
     required: true
   },
-  lastName: {
+  ln: {
     type: String,
     required: true
   },
-  username: {
+  email: {
     type: String,
     required: true,
     unique: true
   },
-  password: {
+  pass: {
     type: String,
     required: true
 },
