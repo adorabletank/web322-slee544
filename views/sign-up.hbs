@@ -1,25 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet">
 
-    </head>
+<body>
+<section class="h-100 bg-dark">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <div class="row g-0">
+            <div class="col-xl-6 d-none d-xl-block">
+              <img src="https://images.unsplash.com/photo-1448932223592-d1fc686e76ea?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHJlZ2lzdHJhdGlvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" 
+                alt="Sample photo" class="img-fluid"
+                style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+            </div>
 
-    <body>
-        <h1>Posting data</h1>
-        <form class="container" method="post" action"/">
-        <div class="form-group">
-           <input class="form-control" name="title">
+            <div class="col-xl-6">
+              <div class="card-body p-md-5 text-black">
+                
+                <form name="regi"  enctype="application/x-www-form-urlencoded" method="post">
+
+                <h3 class="mb-5 text-uppercase">Registration form</h3>
+
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="text" name="fn" id="form3Example1m" class="form-control form-control-lg" placeholder="fn" />
+                      <label class="form-label" for="form3Example1m">*First name</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="text" name="ln" id="form3Example1n" class="form-control form-control-lg" placeholder="ln"/>
+                      <label class="form-label" for="form3Example1n">*Last name</label>
+                    </div>
+                  </div>
+                </div>
+                
+                
+
+                //kokoni error
+
+
+
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      
+                      <input type="text" name="email" id="form3Example1m1" class="form-control form-control-lg" placeholder="email"/>
+                      <label class="form-label" for="form3Example1m1">*Username</label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="password" name="pass" id="form3Example1n1" class="form-control form-control-lg"placeholder="pass" />
+                      <label class="form-label" for="form3Example1n1">*Password</label>
+                    </div>
+                  </div>
+                </div>
+
+                
+                <p style="color:crimson;">{{regiError}}</p>
+                <p style="color:crimson;">{{Eerror}}</p>
+                              
+                <div class="d-flex justify-content-end pt-3">
+                  <button type="button" class="btn btn-light btn-lg">Reset all</button>
+                  <button type="submit" class="btn btn-warning btn-lg ms-2">Submit form</button>
+                </div>
+            
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-            <textarea class="force-control" name="content"></textarea>
-        </div>
-        
-        <button>ADD TO MONGO</button>
-        </form>
-    </body>
-</html>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+
 
