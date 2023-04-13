@@ -7,7 +7,9 @@
 * Student Name  : Seungmoon Lee
 * Student ID    : 164830218
 * Course/Section: WEB322 NCC
-*
+
+//cyclic URL: https://defiant-crab-shorts.cyclic.app/
+ //github URL: https://github.com/adorabletank/web322-slee544
 **************************************************************************************/
 
 const path = require("path");
@@ -78,7 +80,3 @@ function onHttpStart() {
 // Listen on port 8080. The default port for http is 80, https is 443. We use 8080 here
 // because sometimes port 80 is in use by other applications on the machine
 app.listen(HTTP_PORT, onHttpStart);
-
-
-
-
