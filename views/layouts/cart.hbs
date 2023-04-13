@@ -1,22 +1,28 @@
-<div>
-    <div class="row align-items-center" style="height: 100vh;">
-        <div class="mx-auto col-10 col-md-8 col-lg-6">
-            <h1>Welcome data clerk!</h1>
-            
-            
+
+
+<div class="content">
+    <h2>All Rentals:</h2>
+
+    {{#if found}}
+        <div class="rentals pack">
+            {{#each data}}
+            <div class="meals">
+                <img src="/img/{{this.img}}"> <br><br>
+                <span id="headline"><b>headline :</b> {{this.headline}}<br></span>
+                <span id="numSleep"><b># of sleep :</b> {{this.numSleeps}}<br></span>
+                <span id="numBathrooms"><b>{{this.numBathrooms}}</b><br></span>
+                <span id="pricePerNight"><b>Price per night:</b> {{this.pricePerNight}}<br></span>
+                <span id="city"><b>city : {{this.city}}</b><br></span>
+                <span id="province"><b>province : {{this.province}}</b><br></span>
+                <span id="imageUrl"><b>image : {{this.imageUrl}}</b><br></span>
+                <span id="featuredRental"><b>featured Rental : {{this.featuredRental}}</b><br></span>
+            </div>
+            {{/each}}
         </div>
-    </div>
+    {{else}}
+        <h3>There are currently no rental.</h3>
+    {{/if}}
+     
+    <br><br>
+
 </div>
-
-<style>
-    .mx-auto {
-        border-style: solid;
-        padding: 10px;
-        margin: 0px 10px;
-        color: rgb(70, 169, 173);
-    }
-
-    h1 {
-        padding-bottom: 15px;
-    }
-</style>

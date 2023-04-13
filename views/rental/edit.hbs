@@ -1,0 +1,16 @@
+<form class="modal-content" action="/Dashboard/Edit" method="POST">
+
+    <div class="container">
+        <label for="headline"><b>headline</b></label>
+        <input type="text" placeholder="Enter headline" name="headline" value="{{headlineholder}}">
+
+        <div class="errors">{{headlineError}}</div>
+    </div>
+
+    <button type="submit">Find the rental info</button>
+</form>
+
+<div class="content">
+    <button onclick="location.href='/rental/list'" type="button">Go back to the welcome</button>
+</div>
+

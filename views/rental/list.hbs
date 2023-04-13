@@ -1,0 +1,38 @@
+<div class="content">
+
+    <h2>Welcome!</h2>
+    <h3>We are happy to have you, {{user.fn}} {{user.ln}} !</h3>
+
+    <div class="content">
+    <h2>All created meal packages:</h2>
+
+    {{#if found}}
+        <div class="grid-container_meals">
+            {{#each data}}
+            <div class="meals">
+                <img src="/img/{{this.img}}"> <br><br>
+                <span id="headline"><b>headline :</b> {{this.headline}}<br></span>
+                <span id="numSleeps"><b>number of sleeps :</b> {{this.numsleeps}}<br></span>
+                <span id="numBedrooms"><b>number of Bedrooms{{this.numBedrooms}}</b><br></span>
+                <span id="pricePerNight"><b>price Per Night:</b> {{this.pricePerNight}}<br></span>
+                <span id="city"><b>city : {{this.city}}</b><br></span>
+                <span id="province"><b>province: {{this.province}}</b><br></span>
+                <span id="imageUrl"><b>imageUrl:</b> {{this.imageUrl}}<br></span>
+                <span id="featuredRental"><b>featuredRental : {{this.featuredRental}}</b><br></span>
+
+            </div>
+            {{/each}}
+        </div>
+    {{else}}
+        <h3>There are currently no rental.</h3>
+    {{/if}}
+     
+    <br><br>
+    
+</div>
+
+    <button onclick="location.href='/add'" type="button">Add Rentall</button>
+    <button onclick="location.href='/edit'" type="button">Edit Rental</button>
+    <button onclick="location.href='/Logout'" type="button">Logout</button>
+    
+</div>

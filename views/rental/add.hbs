@@ -1,0 +1,71 @@
+<form class="modal-content" action="/rental/add" method="POST" enctype="multipart/form-data">
+    <div class="container">
+
+        {{#if succAdded}}
+        <h2>Your package has been successfully added!</h2>
+        {{/if}}
+
+        <label for="photo"><b>Photo</b></label>
+        <input type="file" name="photo">
+
+        <div class="errors">{{imgError}}</div>
+
+        <label for="headline"><b>Headline</b></label>
+        <input type="text" placeholder="Enter headline" name="headline" value="{{formD.headlineholder}}">
+
+        <div class="errors">{{headlineError}}</div>
+
+        <label for="numSleeps"><b>numSleeps</b></label>
+        <input type="text" placeholder="enter numSleeps" name="numSleeps" value="{{formD.numSleepsholder}}">
+
+        <div class="errors">{{numSleepsError}}</div>
+
+        <label for="numBedrooms"><b>numBedrooms</b></label>
+        <input type="text" placeholder="enter numBedrooms" name="numBedrooms" value="{{formD.numBedroomsholder}}">
+
+        <div class="errors">{{numBedroomsError}}</div>
+
+        <label for="numBathrooms"><b>numBathrooms</b></label>
+        <input type="text" placeholder="enter numBathrooms" name="numBathrooms" value="{{formD.numBathroomsholder}}">
+
+        <div class="errors">{{numBathroomsError}}</div>
+
+        <label for="pricePerNight"><b>Price per night</b></label>
+        <input type="text" placeholder="Enter pricePerNight" name="pricePerNight" value="{{formD.pricePerNightholder}}">
+
+        <div class="errors">{{pricePerNightError}}</div>
+
+        <label for="city"><b>city</b></label>
+        <input type="number" placeholder="enter city" name="city" value="{{formD.cityholder}}">
+
+        <div class="errors">{{cityError}}</div>
+
+        <label for="province"><b>province</b></label>
+        <input type="text" placeholder="Enter province" name="province" value="{{formD.provinceholder}}">
+
+        <div class="errors">{{provinceError}}</div>
+
+        <label for="imageUrl"><b>imageUrl</b></label>
+        <input type="text" placeholder="Enter imageUrl" name="imageUrl" value="{{formD.imageUrlholder}}">
+
+        <div class="errors">{{imageUrlError}}</div>
+
+        <label for="featuredRental"><b>featuredRental</b></label>
+        <input type="checkbox" name="featuredRental" value="true"> <b>yes</b>
+
+        <div class="errors"></div>
+
+        <button type="submit">Add Rental</button>
+
+    </div>
+
+</form>
+
+<div class="content">
+    <button onclick="location.href='/list'" type="button">Go back to the welcome</button>
+</div>
+
+
+
+
+
